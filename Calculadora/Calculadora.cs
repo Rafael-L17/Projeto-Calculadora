@@ -171,7 +171,7 @@
 
         }
 
-        public static class LeitorValores
+        private static class LeitorValores
         {
             public static decimal LerValor(string mensagem)
             {
