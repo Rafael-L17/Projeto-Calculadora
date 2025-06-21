@@ -86,23 +86,15 @@
             {
                 Console.WriteLine("Você escolheu a operação de Soma.");
                 Console.WriteLine("=============================================");
-                Console.WriteLine("Digite o primeiro valor:");
-                Valor1 = Convert.ToDecimal(Console.ReadLine());
-                Console.WriteLine("Digite o segundo valor:");
-                Valor2 = Convert.ToDecimal(Console.ReadLine());
-
-                if (Valor1 < 0 || Valor2 < 0)
-                {
-                    Console.WriteLine("Valores inválidos. Por favor, insira valores maiores ou iguais a zero.");
-                    return 0;
-                }
-
+                Valor1 = LeitorValores.LerValor("Digite o primeiro valor:");
+                Valor2 = LeitorValores.LerValor("Digite o segundo valor:");
                 Total = Valor1 + Valor2;
                 Console.WriteLine($"O resultado da soma é: {Total}");
                 return Total;
             }
         }
 
+    
         public class Subtracao
         {
             public decimal Valor1 { get; set; }
@@ -120,17 +112,8 @@
             {
                 Console.WriteLine("Você escolheu a operação de Subtração.");
                 Console.WriteLine("=============================================");
-                Console.WriteLine("Digite o primeiro valor:");
-                Valor1 = Convert.ToDecimal(Console.ReadLine());
-                Console.WriteLine("Digite o segundo valor:");
-                Valor2 = Convert.ToDecimal(Console.ReadLine());
-
-                if (Valor1 < 0 || Valor2 < 0)
-                {
-                    Console.WriteLine("Valores inválidos. Por favor, insira valores maiores ou iguais a zero.");
-                    return 0;
-                }
-
+                Valor1 = LeitorValores.LerValor("Digite o primeiro valor:");
+                Valor2 = LeitorValores.LerValor("Digite o segundo valor:");
                 Total = Valor1 - Valor2;
                 Console.WriteLine($"O resultado da subtração é: {Total.ToString("F2")}");
                 return Total;
@@ -154,17 +137,8 @@
             {
                 Console.WriteLine("Você escolheu a operação de Multiplicação.");
                 Console.WriteLine("=============================================");
-                Console.WriteLine("Digite o primeiro valor:");
-                Valor1 = Convert.ToDecimal(Console.ReadLine());
-                Console.WriteLine("Digite o segundo valor:");
-                Valor2 = Convert.ToDecimal(Console.ReadLine());
-
-                if (Valor1 < 0 || Valor2 < 0)
-                {
-                    Console.WriteLine("Valores inválidos. Por favor, insira valores maiores ou iguais a zero.");
-                    return 0;
-                }
-
+                Valor1 = LeitorValores.LerValor("Digite o primeiro valor:");
+                Valor2 = LeitorValores.LerValor("Digite o segundo valor:");
                 Total = Valor1 * Valor2;
                 Console.WriteLine($"O resultado da multiplicação é: {Total.ToString("F2")}");
                 return Total;
@@ -188,20 +162,29 @@
             {
                 Console.WriteLine("Você escolheu a operação de Divisão.");
                 Console.WriteLine("=============================================");
-                Console.WriteLine("Digite o primeiro valor:");
-                Valor1 = Convert.ToDecimal(Console.ReadLine());
-                Console.WriteLine("Digite o segundo valor:");
-                Valor2 = Convert.ToDecimal(Console.ReadLine());
-
-                if (Valor1 < 0 || Valor2 <= 0)
-                {
-                    Console.WriteLine("Valores inválidos. Por favor, insira valores maiores ou iguais a zero e o divisor não pode ser zero.");
-                    return 0;
-                }
-
+                Valor1 = LeitorValores.LerValor("Digite o primeiro valor:");
+                Valor2 = LeitorValores.LerValor("Digite o segundo valor:");
                 Total = Valor1 / Valor2;
                 Console.WriteLine($"O resultado da divisão é: {Total.ToString("F2")}");
                 return Total;
+            }
+
+        }
+
+        public static class LeitorValores
+        {
+            public static decimal LerValor(string mensagem)
+            {
+                while (true)
+                {
+                    Console.WriteLine(mensagem);
+                    string entrada = Console.ReadLine();
+
+                    if (decimal.TryParse(entrada, out decimal valor) && valor >= 0)
+                        return valor;
+
+                    Console.WriteLine("Valor inválido. Por favor, insira um número maior ou igual a zero.");
+                }
             }
         }
     }
