@@ -44,8 +44,16 @@
                     Calculadora.Main(args);
                     break;
                 case "5":
+                    var potencia = new Potencia(0, 0, 0);
+                    potencia.CalcularPotencia();
+                    Console.WriteLine("Pressione qualquer tecla para continuar voltar ao Menu inicial.");
+                    Console.ReadLine();
+                    Calculadora.Main(args);
+                    break;
+                case "6":
                     Console.WriteLine("Obrigado por utilizar a Calculadora! Até a próxima.");
                     Console.WriteLine("Pressione qualquer tecla para fechar.");
+                    Environment.Exit(0);
                     break;
                 default:
                     Console.WriteLine("Opção inválida. Por favor, escolha uma opção válida do menu.");
@@ -56,7 +64,7 @@
             }
         }
 
-        public class Menu
+        private class Menu
         {
             public void ExibirMenu()
             {
@@ -65,11 +73,12 @@
                 Console.WriteLine("2 - Subtração");
                 Console.WriteLine("3 - Multiplicação");
                 Console.WriteLine("4 - Divisão");
-                Console.WriteLine("5 - Sair");
+                Console.WriteLine("5 - Potência");
+                Console.WriteLine("6 - Sair");
             }
         }
 
-        public class Soma
+        private class Soma
         {
             decimal Valor1 { get; set; }
             decimal Valor2 { get; set; }
@@ -86,16 +95,19 @@
             {
                 Console.WriteLine("Você escolheu a operação de Soma.");
                 Console.WriteLine("=============================================");
+
                 Valor1 = LeitorValores.LerValor("Digite o primeiro valor:");
                 Valor2 = LeitorValores.LerValor("Digite o segundo valor:");
+
                 Total = Valor1 + Valor2;
+
                 Console.WriteLine($"O resultado da soma é: {Total}");
                 return Total;
             }
         }
 
     
-        public class Subtracao
+        private class Subtracao
         {
             public decimal Valor1 { get; set; }
             public decimal Valor2 { get; set; }
@@ -112,15 +124,18 @@
             {
                 Console.WriteLine("Você escolheu a operação de Subtração.");
                 Console.WriteLine("=============================================");
+
                 Valor1 = LeitorValores.LerValor("Digite o primeiro valor:");
                 Valor2 = LeitorValores.LerValor("Digite o segundo valor:");
+
                 Total = Valor1 - Valor2;
+
                 Console.WriteLine($"O resultado da subtração é: {Total.ToString("F2")}");
                 return Total;
             }
         }
 
-        public class Multiplicacao
+        private class Multiplicacao
         {
             public decimal Valor1 { get; set; }
             public decimal Valor2 { get; set; }
@@ -137,15 +152,18 @@
             {
                 Console.WriteLine("Você escolheu a operação de Multiplicação.");
                 Console.WriteLine("=============================================");
+
                 Valor1 = LeitorValores.LerValor("Digite o primeiro valor:");
                 Valor2 = LeitorValores.LerValor("Digite o segundo valor:");
+
                 Total = Valor1 * Valor2;
+
                 Console.WriteLine($"O resultado da multiplicação é: {Total.ToString("F2")}");
                 return Total;
             }
         }
 
-        public class Divisao
+        private class Divisao
         {
             public decimal Valor1 { get; set; }
             public decimal Valor2 { get; set; }
@@ -162,11 +180,43 @@
             {
                 Console.WriteLine("Você escolheu a operação de Divisão.");
                 Console.WriteLine("=============================================");
+
                 Valor1 = LeitorValores.LerValor("Digite o primeiro valor:");
                 Valor2 = LeitorValores.LerValor("Digite o segundo valor:");
+
                 Total = Valor1 / Valor2;
+
                 Console.WriteLine($"O resultado da divisão é: {Total.ToString("F2")}");
                 return Total;
+            }
+
+        }
+
+        private class Potencia
+        {
+            public decimal Base { get; set; }
+            public decimal Expoente { get; set; }
+            public decimal Resultado { get; set; }
+
+            public Potencia(decimal valorBase, decimal expoente, decimal resultado)
+            {
+                Base = valorBase;
+                Expoente = expoente;
+                Resultado = resultado;
+            }
+
+            public decimal CalcularPotencia()
+            {
+                Console.WriteLine("Você escolheu a operação de Potência.");
+                Console.WriteLine("=============================================");
+
+                Base = LeitorValores.LerValor("Digite a base:");
+                Expoente = LeitorValores.LerValor("Digite o expoente:");
+
+                Resultado = (decimal)Math.Pow((double)Base, (double)Expoente);
+
+                Console.WriteLine($"O resultado da potência é: {Resultado.ToString("F2")}");
+                return Resultado;
             }
 
         }
