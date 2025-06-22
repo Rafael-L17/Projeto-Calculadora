@@ -51,6 +51,13 @@
                     Calculadora.Main(args);
                     break;
                 case "6":
+                    var raizQuadrada = new RaizQuadrada(0, 0);
+                    raizQuadrada.CalcularRaizQuadrada();
+                    Console.WriteLine("Pressione qualquer tecla para continuar voltar ao Menu inicial.");
+                    Console.ReadLine();
+                    Calculadora.Main(args);
+                    break;
+                case "7":
                     Console.WriteLine("Obrigado por utilizar a Calculadora! Até a próxima.");
                     Console.WriteLine("Pressione qualquer tecla para fechar.");
                     Environment.Exit(0);
@@ -74,7 +81,8 @@
                 Console.WriteLine("3 - Multiplicação");
                 Console.WriteLine("4 - Divisão");
                 Console.WriteLine("5 - Potência");
-                Console.WriteLine("6 - Sair");
+                Console.WriteLine("6 - Raiz Quadrada");
+                Console.WriteLine("7 - Sair");
             }
         }
 
@@ -83,6 +91,8 @@
             decimal Valor1 { get; set; }
             decimal Valor2 { get; set; }
             decimal Total { get; set; }
+
+            public Soma() { }
 
             public Soma(decimal valor1, decimal valor2, decimal total)
             {
@@ -113,6 +123,8 @@
             public decimal Valor2 { get; set; }
             public decimal Total { get; set; }
 
+            public Subtracao() { }
+
             public Subtracao(decimal valor1, decimal valor2, decimal total)
             {
                 Valor1 = valor1;
@@ -141,6 +153,8 @@
             public decimal Valor2 { get; set; }
             public decimal Total { get; set; }
 
+            public Multiplicacao() { }
+
             public Multiplicacao(decimal valor1, decimal valor2, decimal total)
             {
                 Valor1 = valor1;
@@ -168,6 +182,8 @@
             public decimal Valor1 { get; set; }
             public decimal Valor2 { get; set; }
             public decimal Total { get; set; }
+
+            public Divisao() { }
 
             public Divisao(decimal valor1, decimal valor2, decimal total)
             {
@@ -198,6 +214,8 @@
             public decimal Expoente { get; set; }
             public decimal Resultado { get; set; }
 
+            public Potencia() { }
+
             public Potencia(decimal valorBase, decimal expoente, decimal resultado)
             {
                 Base = valorBase;
@@ -219,6 +237,33 @@
                 return Resultado;
             }
 
+        }
+
+        private class RaizQuadrada
+        {
+            public decimal Valor { get; set; }
+            public decimal Resultado { get; set; }
+
+            public RaizQuadrada() { }
+
+            public RaizQuadrada(decimal valor, decimal resultado)
+            {
+                Valor = valor;
+                Resultado = resultado;
+            }
+
+            public decimal CalcularRaizQuadrada()
+            {
+                Console.WriteLine("Você escolheu a operação de Raiz Quadrada.");
+                Console.WriteLine("=============================================");
+
+                Valor = LeitorValores.LerValor("Digite o valor:");
+
+                Resultado = (decimal)Math.Sqrt((double)Valor);
+
+                Console.WriteLine($"O resultado da raiz quadrada é: {Resultado.ToString("F2")}");
+                return Resultado;
+            }
         }
 
         private static class LeitorValores
